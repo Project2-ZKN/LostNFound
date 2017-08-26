@@ -126,7 +126,7 @@
 
                 </a>
 
-            <div class="active content">
+            <div class="content">
 
               <div class="ui form">
 
@@ -198,7 +198,7 @@
 
                 </a>
 
-            <div class="active content">
+            <div class="content">
 
               <div class="ui form">
 
@@ -342,7 +342,7 @@
 
                 </a>
 
-            <div class="active content">
+            <div class="content">
 
               <div class="ui form">
 
@@ -456,7 +456,7 @@
 
 <!-- This part is the modal for claiming an item -->
 
-<div class="ui modal">
+<div class="ui modal" id="intro">
   <i class="close icon"></i>
   <div class="header">
     Claiming an item
@@ -564,7 +564,7 @@
 
       // this section initializes the semantic modal when the claim button is clicked for an item.
         claimButton.click(function() {
-          $('.ui.modal').modal('show');
+          $('#intro').modal('show');
         });
 
       // this function checks if a there is a match based on the response the user clicks inside the claim modal.
@@ -586,13 +586,13 @@
           });
         }
 
-      $('.deny').click(function() {
-        claimMatch('Solid');
-      });
+        $('.deny').click(function() {
+          claimMatch('Solid');
+        });
 
-      $('.positive').click(function(){
-        claimMatch('Patterned');
-      });
+        $('.positive').click(function(){
+          claimMatch('Patterned');
+        });
 
 
 
