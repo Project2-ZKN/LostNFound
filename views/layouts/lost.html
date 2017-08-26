@@ -477,7 +477,7 @@
 </div>
 
 <!-- failure modal will only display when match fails -->
-<div class="ui modal failure">
+<div class="ui modal" id="failure">
   <i class="close icon"></i>
   <div class="header">
     Sorry!
@@ -489,7 +489,7 @@
 </div>
 
 <!-- success modal will only display when match succeeds -->
-<div class="ui modal success">
+<div class="ui modal" id="success">
   <i class="close icon"></i>
   <div class="header">
     Success!
@@ -564,13 +564,13 @@
 
       // this section initializes the semantic modal when the claim button is clicked for an item.
         claimButton.click(function() {
-          console.log("claim is clicked");
           $('.ui.modal').modal('show');
         });
 
       // this function checks if a there is a match based on the response the user clicks inside the claim modal.
         function claimMatch(userAnswer){
           $.ajax({
+            data: userAnswer,
             url: "/api/check/:id"
           }).then(function(res, err) {
             if (userAnswer === res) {
@@ -578,10 +578,10 @@
                 type: "delete",
                 url: "/api/stuff/:id"
               }).then(function(){
-                $('.ui.modal.success').modal('show');
-              })
+                $('#success').modal('show');
+              });
             } else {
-                $('.ui.modal.failure').modal('show');
+                $('#failure').modal('show');
             }
           });
         }
