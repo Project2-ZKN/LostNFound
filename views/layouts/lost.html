@@ -541,6 +541,7 @@
         $('.ui.accordion').accordion();
         $('.ui.checkbox').checkbox();
 
+        var claimButton = $('<button>Claim Item</button>');
 
     // ajax call to display table data
         $.ajax({
@@ -561,10 +562,7 @@
           }
         })
 
-
       // this section initializes the semantic modal when the claim button is clicked for an item.
-        var claimButton = $('<button>Claim Item</button>');
-
         claimButton.click(function() {
           console.log("claim is clicked");
           $('.ui.modal').modal('show');
@@ -589,11 +587,11 @@
         }
 
       $('.deny').click(function() {
-        var userAnswer = claimMatch('No');
+        var userAnswer = claimMatch('Solid');
       });
 
       $('.positive').click(function(){
-        var userAnswer = claimMatch('Yes');
+        var userAnswer = claimMatch('Patterned');
       });
 
 
