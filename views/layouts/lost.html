@@ -541,6 +541,27 @@
         $('.ui.accordion').accordion();
         $('.ui.checkbox').checkbox();
 
+
+    // ajax call to display table data
+        $.ajax({
+          url: "/api/getitems?lost=0"
+        }).then(function(res, err) {
+          console.log(res)
+          var items = res
+          var tbody = $('#items');
+          for (i in items) {
+            var tr = $('<tr>').append(
+              $('<td>').text(items[i].itemtype),
+              $('<td>').text(items[i].size),
+              $('<td>').text(items[i].color),
+              $('<td>').text(items[i].location),
+              $('<td>').html(claimButton)
+            );
+            $(tr).appendTo(tbody);
+          }
+        })
+
+
       // this section initializes the semantic modal when the claim button is clicked for an item.
         var claimButton = $('<button>Claim Item</button>');
 
@@ -568,34 +589,16 @@
         }
 
       $('.deny').click(function() {
-        claimMatch('No');
+        var userAnswer = claimMatch('No');
       });
 
       $('.positive').click(function(){
-        claimMatch('Yes');
-      })
-
-    // ajax call to display table data
-        $.ajax({
-          url: "/api/getitems?lost=0"
-        }).then(function(res, err) {
-          console.log(res)
-          var items = res
-          var tbody = $('#items');
-          for (i in items) {
-            var tr = $('<tr>').append(
-              $('<td>').text(items[i].itemtype),
-              $('<td>').text(items[i].size),
-              $('<td>').text(items[i].color),
-              $('<td>').text(items[i].location),
-              $('<td>').html("<button>Claim Item</button>")
-            );
-            $(tr).appendTo(tbody);
-          }
-        })
+        var userAnswer = claimMatch('Yes');
+      });
 
 
-      // click function for hitting submit (ok this one was kinda obvious)
+
+      // click function for adding an item (ok this one was kinda obvious)
         $("#submitItem").click(function() {
           console.log("clicked")
           event.preventDefault();
