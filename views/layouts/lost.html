@@ -551,7 +551,7 @@
       // this function checks if a there is a match based on the response the user clicks inside the claim modal.
         function claimMatch(userAnswer){
           $.ajax({
-            url: "api/###"
+            url: "/api/check/:id"
           }).then(function(res, err) {
             if (userAnswer === res) {
               $.ajax({

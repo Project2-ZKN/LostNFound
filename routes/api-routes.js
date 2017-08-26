@@ -14,6 +14,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/check/:id", function(req, res) {
+    db.stuff.findAll({
+      where: {
+        id: req.params.id,
+        attrib: req.attrib
+      }
+    }).then(function(dbStuff) {
+      res.json(dbStuff);
+    });
+  });
 
   app.post("/api/postitem", function(req, res) {
     console.log(req)
